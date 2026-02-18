@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Pedido | Ciencias Caffé</title>
+    <link rel="stylesheet" href="css/estilos_cliente.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">⚛️ CIENCIAS<span>CAFFÉ</span></div>
+        <div class="user-info">
+            <span id="puntos-lealtad">🌟 150 puntos</span>
+            <button id="btnLogout" class="btn-logout">Cerrar Sesión</button>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="catalog">
+            <h2>Menú del Día</h2>
+            <div id="product-grid" class="product-grid">
+                </div>
+        </section>
+
+        <aside class="cart-container">
+            <div class="cart-header">
+                <h3>🛒 Mi Carrito (<span id="cart-count">0</span>)</h3>
+                <button id="btnVaciar" class="btn-clear" onclick="vaciarCarrito()">Vaciar</button>
+            </div>
+            
+            <div id="cart-items" class="cart-items">
+                <p class="empty-msg">Tu carrito está vacío</p>
+            </div>
+
+            <div class="cart-footer">
+                <div class="total-row">
+                    <span>Subtotal:</span>
+                    <span id="cart-total">$0.00</span>
+                </div>
+                <button id="btnFinalizar" class="btn-checkout" onclick="finalizarPedido()">Finalizar Pedido</button>
+            </div>
+        </aside>
+    </main>
+
+    <section class="history-section">
+        <h3>📜 Historial de Compras</h3>
+        <table class="history-table">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Detalles</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody id="history-body">
+                <tr>
+                    <td>15/02/2026</td>
+                    <td>2x Empanada de Queso, 1x Café Grande</td>
+                    <td>$7.50</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <script src="js/funcionalidades_cliente.js"></script>
+</body>
+</html>

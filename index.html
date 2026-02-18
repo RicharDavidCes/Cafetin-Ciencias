@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ciencias Caffé | UCV</title>
+    <link rel="stylesheet" href="css/estilos_extranet.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <span class="logo-icon">⚛️</span> CIENCIAS<span>CAFFÉ</span>
+        </div>
+        <a href="login.html" style="text-decoration: none" id="btnLogin" class="btn-staff">
+            <span class="btn-icon">👤</span> Login
+        </a>
+    </nav>
+
+    <section class="carousel-container">
+        <div class="carousel-slide active">
+            <img src="img/cafe_pizarra.png" alt="Café 1">
+            <div class="carousel-caption">
+                <h1>¿Sobreviviendo a Mate 1?</h1>
+                <p>El combustible oficial para vencer la sombra.</p>
+            </div>
+        </div>
+        <div class="carousel-slide">
+            <img src="img/empanada.png" alt="Comida">
+            <div class="carousel-caption">
+                <h1>Empanadas Nivel "Magna"</h1>
+                <p>Las más operadas de toda la facultad.</p>
+            </div>
+        </div>
+        
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </section>
+
+    <main class="content">
+        <h2 class="section-title">Nuestras <span>Fórmulas</span></h2>
+        <div class="grid-menu">
+            <div class="card">
+                <div class="card-icon">☕</div>
+                <h3>Dosis de Cafeína</h3>
+                <p>Ideal para el post-examen de Física III.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🍔</div>
+                <h3>Almuerzo Lab</h3>
+                <p>Proteína pura para aguantar el laboratorio.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🌐</div>
+                <h3>Zona Free-Wi-Fi</h3>
+                <p>Conéctate y descarga tus papers aquí.</p>
+            </div>
+        </div>
+    </main>
+
+    <section class="social-feed-section">
+        <h2 class="section-title">En nuestro <span class="highlight">#SocialFeed</span></h2>
+        <p class="section-subtitle">Lo último del cafetín, la facultad y los memes científicos.</p>
+
+        <div class="social-grid">
+            <div class="social-card instagram-style">
+                <div class="card-header">
+                    <img src="img/logo_redes.png" alt="CienciasCaffe" class="profile-pic">
+                    <span class="username">cienciascaffe_ucv</span>
+                    <span class="timestamp">Hace 2h</span>
+                </div>
+                <img src="img/post_ig.png" alt="Post de Instagram" class="post-image">
+                <div class="card-actions">
+                    <span class="action-emoji">❤️</span>
+                    <span class="action-emoji">💬</span>
+                    <span class="action-emoji">✈️</span>
+                </div>
+                <div class="likes">Les gusta a <strong>matematica_cool</strong> y <strong>1.234 más</strong></div>
+                <p class="caption">¡Hora de un receso merecido! ☕ Nuestro café te espera para recargar energías. #CienciasCaffe #UCV</p>
+                <span class="view-comments">Ver los 37 comentarios...</span>
+            </div>
+
+            <div class="social-card facebook-style">
+                <div class="card-header">
+                    <img src="img/logo_redes.png" alt="CienciasCaffe" class="profile-pic">
+                    <div>
+                        <span class="username">Ciencias Caffé UCV</span><br>
+                        <span class="timestamp">Ayer a las 14:30</span>
+                    </div>
+                </div>
+                <p class="post-text">
+                    ¡Atención futuros científicos! 📣 Buscamos nuevos talentos para el equipo. ¡Pasa por el local!
+                </p>
+                <img src="img/post_fb.png" alt="Post de Facebook" class="post-image">
+                <div class="card-actions-fb">
+                    <span>👍 Me gusta</span>
+                    <span>💬 Comentar</span>
+                    <span>🔗 Compartir</span>
+                </div>
+            </div>
+
+            <div class="social-card tiktok-style">
+                <div class="card-header">
+                    <img src="img/logo_redes.png" alt="CienciasCaffe" class="profile-pic">
+                    <span class="username">@cienciascaffe_ucv</span>
+                </div>
+                <h3 class="tiktok-title">Nuestros últimos "TikToks"</h3>
+                <div class="tiktok-grid">
+                    <div class="tiktok-item">
+                        <img src="img/post_tk1.png" alt="TikTok 1">
+                        <span class="tiktok-views">👁️ 15.6K</span>
+                    </div>
+                    <div class="tiktok-item">
+                        <img src="img/post_tk2.png" alt="TikTok 2">
+                        <span class="tiktok-views">👁️ 8.2K</span>
+                    </div>
+                    <div class="tiktok-item">
+                        <img src="img/post_tk3.png" alt="TikTok 3">
+                        <span class="tiktok-views">👁️ 21.1K</span>
+                    </div>
+                </div>
+                <button class="tiktok-button">🎬 Ver más contenido</button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="footer-info">
+            <p><strong>Ubicación:</strong> Al frente de Plaza la Langosta</p>
+            <div class="socials">
+                <span>📸</span>
+                <span>🐦</span>
+                <span>🎥</span>
+            </div>
+        </div>
+        <p class="copy">© 2024 Cafetín Ciencias UCV - Hecho por Estudiantes para Estudiantes.</p>
+    </footer>
+
+    <script src="js/funcionalidades.js"></script>
+</body>
+</html>

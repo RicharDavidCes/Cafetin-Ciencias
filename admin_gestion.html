@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración | Ciencias Caffé</title>
+    <link rel="stylesheet" href="css/estilos_admin.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">⚛️ CIENCIAS<span>CAFFÉ</span> <small>| ADMIN</small></div>
+        <button class="btn-logout" onclick="window.location.href='login.html'">Cerrar Sesión</button>
+    </nav>
+
+    <main class="admin-container">
+        <section class="admin-card">
+            <h3>➕ Agregar Nuevo Producto</h3>
+            <form id="form-producto" class="admin-form">
+                <div class="input-group">
+                    <label>Nombre del Producto</label>
+                    <input type="text" id="admin-nombre" placeholder="Ej: Galleta de Avena" required>
+                </div>
+                <div class="input-group">
+                    <label>Precio ($)</label>
+                    <input type="number" id="admin-precio" step="0.01" placeholder="0.00" required>
+                </div>
+                <div class="input-group">
+                    <label>URL de la Imagen (simulada en /img/)</label>
+                    <input type="text" id="admin-url" placeholder="img/producto.png" required>
+                </div>
+                <button type="submit" class="btn-save">Guardar en Menú</button>
+            </form>
+        </section>
+
+        <section class="admin-card">
+            <div class="admin-card-header">
+                <h3>🗑️ Gestión de Contenido</h3>
+                <div class="admin-tabs">
+                    <button id="tab-productos" class="tab-btn active" onclick="cambiarVistaAdmin('Producto')">Menú</button>
+                    <button id="tab-resenas" class="tab-btn" onclick="cambiarVistaAdmin('Reseña')">Reseñas</button>
+                </div>
+            </div>
+            <div class="table-wrapper">
+                <table class="admin-table">
+                    <thead>
+                        <tr>
+                            <th>Ítem / Usuario</th>
+                            <th>Tipo</th>
+                            <th>Precio / Comentario</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-items-body">
+                        </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="js/funcionalidades_admin.js"></script>
+</body>
+</html>

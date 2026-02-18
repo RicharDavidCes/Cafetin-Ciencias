@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Punto de Venta | Staff Ciencias</title>
+    <link rel="stylesheet" href="css/estilos_caja.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">⚛️ CIENCIAS<span>CAFFÉ</span> <small>| CAJA</small></div>
+        <div class="user-info">
+            <span>👤 Operador: <strong id="nombre-cajero">Cajero_01</strong></span>
+            <button id="btnLogout" class="btn-logout" onclick="window.location.href='login.html'">Salir</button>
+        </div>
+    </nav>
+
+    <main class="pos-container">
+        <section class="selection-area">
+            <h3>Selección de Productos</h3>
+            <div class="category-tabs">
+                <button id="tab-todo" class="tab active" onclick="filtrarProductos('todos')">Todo</button>
+                <button class="tab" onclick="filtrarProductos('comida')">Comida</button>
+                <button class="tab" onclick="filtrarProductos('bebida')">Bebidas</button>
+            </div>
+            <div id="pos-grid" class="pos-grid">
+                </div>
+        </section>
+
+        <aside class="billing-area">
+            <h3>Resumen de Venta</h3>
+            <div class="bill-table-container">
+                <table class="bill-table">
+                    <thead>
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cant.</th>
+                            <th>Subt.</th>
+                            <th>Acción</th> </tr>
+                    </thead>
+                    <tbody id="bill-items">
+                        </tbody>
+                </table>
+            </div>
+
+            <div class="bill-summary">
+                <div class="summary-row total">
+                    <span>TOTAL:</span>
+                    <span id="pos-total">$0.00</span>
+                </div>
+                <button id="btnEmitir" class="btn-emitir" onclick="emitirRecibo()">
+                    📄 EMITIR RECIBO
+                </button>
+            </div>
+        </aside>
+    </main>
+
+    <script src="js/funcionalidades_caja.js"></script>
+</body>
+</html>
