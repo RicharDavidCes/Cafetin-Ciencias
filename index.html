@@ -12,122 +12,122 @@
         <div class="logo">
             <span class="logo-icon">⚛️</span> CIENCIAS<span>CAFFÉ</span>
         </div>
-        <a href="login.html" style="text-decoration: none" id="btnLogin" class="btn-staff">
-            <span class="btn-icon">👤</span> Login
+        <a href="login.html" style="text-decoration: none" id="btnLogin" class="boton_login">
+            👤 Login
         </a>
     </nav>
 
-    <section class="carousel-container">
-        <div class="carousel-slide active">
+    <section class="contenedor_carrusel">
+        <div class="desliz_carrusel activo">
             <img src="img/cafe_pizarra.png" alt="Café 1">
-            <div class="carousel-caption">
+            <div class="carrusel_comentarios">
                 <h1>¿Sobreviviendo a Mate 1?</h1>
                 <p>El combustible oficial para vencer la sombra.</p>
             </div>
         </div>
-        <div class="carousel-slide">
+        <div class="desliz_carrusel">
             <img src="img/empanada.png" alt="Comida">
-            <div class="carousel-caption">
+            <div class="carrusel_comentarios">
                 <h1>Empanadas Nivel "Magna"</h1>
                 <p>Las más operadas de toda la facultad.</p>
             </div>
         </div>
         
-        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+        <button class="previo" onclick="mueveDesliz(-1)">&#10094;</button>
+        <button class="proximo" onclick="mueveDesliz(1)">&#10095;</button>
     </section>
 
-    <main class="content">
-        <h2 class="section-title">Nuestras <span>Fórmulas</span></h2>
-        <div class="grid-menu">
-            <div class="card">
-                <div class="card-icon">☕</div>
+    <main class="contenido">
+        <h2 class="titulo_seccion">Nuestras <span>Fórmulas</span></h2>
+        <div class="rejilla-menu">
+            <div class="tarjeta">
+                <div class="tarjeta-icono">☕</div>
                 <h3>Dosis de Cafeína</h3>
                 <p>Ideal para el post-examen de Física III.</p>
             </div>
-            <div class="card">
-                <div class="card-icon">🍔</div>
+            <div class="tarjeta">
+                <div class="tarjeta-icono">🍔</div>
                 <h3>Almuerzo Lab</h3>
                 <p>Proteína pura para aguantar el laboratorio.</p>
             </div>
-            <div class="card">
-                <div class="card-icon">🌐</div>
+            <div class="tarjeta">
+                <div class="tarjeta-icono">🌐</div>
                 <h3>Zona Free-Wi-Fi</h3>
                 <p>Conéctate y descarga tus papers aquí.</p>
             </div>
         </div>
     </main>
 
-    <section class="social-feed-section">
-        <h2 class="section-title">En nuestro <span class="highlight">#SocialFeed</span></h2>
-        <p class="section-subtitle">Lo último del cafetín, la facultad y los memes científicos.</p>
+    <section class="seccion_social">
+        <h2 class="titulo_seccion">En nuestro <span>#SocialFeed</span></h2>
+        <p>Lo último del cafetín, la facultad y los memes científicos.</p>
 
-        <div class="social-grid">
-            <div class="social-card instagram-style">
-                <div class="card-header">
-                    <img src="img/logo_redes.png" alt="CienciasCaffe" class="profile-pic">
-                    <span class="username">cienciascaffe_ucv</span>
-                    <span class="timestamp">Hace 2h</span>
+        <div class="rejilla_social">
+            <div class="tarjeta_social">
+                <div class="tarjeta_encabezado">
+                    <img src="img/logo_redes.png" alt="CienciasCaffe" class="foto_perfil">
+                    <span class="usuario">cienciascaffe_ucv</span><br>
+                    <span class="fecha">Hace 2h</span>
                 </div>
-                <img src="img/post_ig.png" alt="Post de Instagram" class="post-image">
-                <div class="card-actions">
-                    <span class="action-emoji">❤️</span>
-                    <span class="action-emoji">💬</span>
-                    <span class="action-emoji">✈️</span>
+                <img src="img/post_ig.png" alt="Post de Instagram" class="post_imagen">
+                <div class="tarjeta_accion">
+                    <span class="emoji_accion">❤️</span>
+                    <span class="emoji_accion">💬</span>
+                    <span class="emoji_accion">✈️</span>
                 </div>
                 <div class="likes">Les gusta a <strong>matematica_cool</strong> y <strong>1.234 más</strong></div>
-                <p class="caption">¡Hora de un receso merecido! ☕ Nuestro café te espera para recargar energías. #CienciasCaffe #UCV</p>
-                <span class="view-comments">Ver los 37 comentarios...</span>
+                <p class="comentarios">¡Hora de un descanso merecido! ☕ Nuestro café te espera para recargar energías. #CienciasCaffe #UCV</p>
+                <span>Ver los 37 comentarios...</span>
             </div>
 
-            <div class="social-card facebook-style">
-                <div class="card-header">
-                    <img src="img/logo_redes.png" alt="CienciasCaffe" class="profile-pic">
+            <div class="tarjeta_social">
+                <div class="tarjeta_encabezado">
+                    <img src="img/logo_redes.png" alt="CienciasCaffe" class="foto_perfil">
                     <div>
-                        <span class="username">Ciencias Caffé UCV</span><br>
-                        <span class="timestamp">Ayer a las 14:30</span>
+                        <span class="usuario">Ciencias Caffé UCV</span><br>
+                        <span class="fecha">Ayer a las 14:30</span>
                     </div>
                 </div>
-                <p class="post-text">
+                <p class="post_texto">
                     ¡Atención futuros científicos! 📣 Buscamos nuevos talentos para el equipo. ¡Pasa por el local!
                 </p>
-                <img src="img/post_fb.png" alt="Post de Facebook" class="post-image">
-                <div class="card-actions-fb">
+                <img src="img/post_fb.png" alt="Post de Facebook" class="post_imagen">
+                <div class="tarjeta_accion_fb">
                     <span>👍 Me gusta</span>
                     <span>💬 Comentar</span>
                     <span>🔗 Compartir</span>
                 </div>
             </div>
 
-            <div class="social-card tiktok-style">
-                <div class="card-header">
-                    <img src="img/logo_redes.png" alt="CienciasCaffe" class="profile-pic">
-                    <span class="username">@cienciascaffe_ucv</span>
+            <div class="tarjeta_social">
+                <div class="tarjeta_encabezado">
+                    <img src="img/logo_redes.png" alt="CienciasCaffe" class="foto_perfil">
+                    <span class="usuario">@cienciascaffe_ucv</span>
                 </div>
-                <h3 class="tiktok-title">Nuestros últimos "TikToks"</h3>
-                <div class="tiktok-grid">
-                    <div class="tiktok-item">
+                <h3>Nuestros últimos "TikToks"</h3>
+                <div class="tiktok_rejilla">
+                    <div class="tiktok_post">
                         <img src="img/post_tk1.png" alt="TikTok 1">
-                        <span class="tiktok-views">👁️ 15.6K</span>
+                        <span class="tiktok_vistas">👁️ 15.6K</span>
                     </div>
-                    <div class="tiktok-item">
+                    <div class="tiktok_post">
                         <img src="img/post_tk2.png" alt="TikTok 2">
-                        <span class="tiktok-views">👁️ 8.2K</span>
+                        <span class="tiktok_vistas">👁️ 8.2K</span>
                     </div>
-                    <div class="tiktok-item">
+                    <div class="tiktok_post">
                         <img src="img/post_tk3.png" alt="TikTok 3">
-                        <span class="tiktok-views">👁️ 21.1K</span>
+                        <span class="tiktok_vistas">👁️ 21.1K</span>
                     </div>
                 </div>
-                <button class="tiktok-button">🎬 Ver más contenido</button>
+                <button class="tiktok_boton">🎬 Ver más contenido</button>
             </div>
         </div>
     </section>
 
-    <footer class="main-footer">
-        <div class="footer-info">
+    <footer class="main_footer">
+        <div>
             <p><strong>Ubicación:</strong> Al frente de Plaza la Langosta</p>
-            <div class="socials">
+            <div class="sociales">
                 <span>📸</span>
                 <span>🐦</span>
                 <span>🎥</span>

@@ -1,51 +1,139 @@
-:root {
+:root{
     --primary: #f2c811;
     --dark: #222;
     --bg: #e5e5e5;
 }
 
-body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; }
+body{ 
+    font-family: 'Segoe UI', sans-serif; 
+    background: var(--bg); 
+    margin: 0; 
+}
 
-.navbar { background: var(--dark); color: white; padding: 10px 5%; display: flex; justify-content: space-between; align-items: center; }
-.logo span { color: var(--primary); }
+.barra_navegacion{ 
+    background: var(--dark); 
+    color: white; 
+    padding: 10px 5%; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
 
-.pos-container { display: flex; height: calc(100vh - 60px); padding: 20px; gap: 20px; }
+.logo span{ 
+    color: var(--primary); 
+}
 
-/* Área de botones */
-.selection-area { flex: 2; background: white; border-radius: 10px; padding: 20px; }
-.pos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 15px; margin-top: 20px; }
+.contenedor_pos{ 
+    display: flex; 
+    height: calc(100vh - 60px); 
+    padding: 20px; 
+    gap: 20px; 
+}
 
-.pos-button {
-    background: #f9f9f9; padding: 20px; border-radius: 8px; cursor: pointer;
-    display: flex; flex-direction: column; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.area_seleccion{ 
+    flex: 2; 
+    background: white; 
+    border-radius: 10px; 
+    padding: 20px; 
+}
+
+.cuadricula_pos{ 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
+    gap: 15px; 
+    margin-top: 20px; 
+}
+
+.boton_pos{
+    background: #f9f9f9; 
+    padding: 20px; 
+    border-radius: 8px; 
+    cursor: pointer;
+    display: flex; 
+    flex-direction: column; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     transition: 0.2s; border: 1px solid #ddd;
 }
-.pos-button:active { transform: scale(0.95); background: #eee; }
 
-/* Área de cobro */
-.billing-area { flex: 1; background: #fff; border-radius: 10px; padding: 20px; display: flex; flex-direction: column; border: 2px solid var(--dark); }
-.bill-table-container { flex: 1; overflow-y: auto; margin: 15px 0; }
-.bill-table { width: 100%; border-collapse: collapse; }
-.bill-table th { text-align: left; border-bottom: 2px solid var(--dark); padding: 8px; }
-.bill-table td { padding: 8px; border-bottom: 1px solid #eee; }
-
-.bill-summary { background: var(--dark); color: white; padding: 20px; border-radius: 8px; }
-.summary-row { display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: bold; margin-bottom: 15px; }
-.summary-row.total { color: var(--primary); font-size: 1.5rem; }
-
-.btn-emitir {
-    width: 100%; background: var(--primary); border: none; padding: 15px;
-    font-size: 1.1rem; font-weight: bold; cursor: pointer; border-radius: 5px;
+.boton_pos:active{ 
+    transform: scale(0.95); 
+    background: #eee; 
 }
-.btn-emitir:hover { background: #d4b00f; }
 
-.category-tabs {
+.area_facturacion{ 
+    flex: 1; 
+    background: #fff; 
+    border-radius: 10px; 
+    padding: 20px; 
+    display: flex; 
+    flex-direction: column; 
+    border: 2px solid var(--dark); 
+}
+
+.contenedor_tabla_factura{ 
+    flex: 1; 
+    overflow-y: auto; 
+    margin: 15px 0; 
+}
+
+.tabla_factura{ 
+    width: 100%; 
+    border-collapse: collapse; 
+}
+
+.tabla_factura th{ 
+    text-align: left; 
+    border-bottom: 2px solid var(--dark); 
+    padding: 8px; 
+}
+
+.tabla_factura td{ 
+    padding: 8px; 
+    border-bottom: 1px solid #eee; 
+}
+
+.resumen_factura{ 
+    background: var(--dark); 
+    color: white; 
+    padding: 20px; 
+    border-radius: 8px; 
+}
+
+.fila_resumen{ 
+    display: flex; 
+    justify-content: space-between; 
+    font-size: 1.2rem; 
+    font-weight: bold; 
+    margin-bottom: 15px; 
+}
+
+.fila_resumen.total{ 
+    color: var(--primary); 
+    font-size: 1.5rem; 
+}
+
+.boton_emitir{
+    width: 100%; 
+    background: var(--primary); 
+    border: none; 
+    padding: 15px;
+    font-size: 1.1rem; 
+    font-weight: bold; 
+    cursor: pointer; 
+    border-radius: 5px;
+}
+
+.boton_emitir:hover{ 
+    background: #d4b00f; 
+}
+
+.pestanas_categorias{
     margin-bottom: 15px;
     display: flex;
     gap: 10px;
 }
 
-.tab {
+.pestana{
     padding: 10px 20px;
     border: 1px solid #ddd;
     background: white;
@@ -55,18 +143,17 @@ body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; }
     transition: 0.3s;
 }
 
-.tab.active {
+.pestana.activa{
     background: var(--primary);
     border-color: var(--dark);
     color: var(--dark);
 }
 
-.tab:hover:not(.active) {
+.pestana:hover:not(.activa){
     background: #f0f0f0;
 }
 
-/* Estilo para el botón de eliminar en la tabla de la caja */
-.btn-del {
+.boton_eliminar_item{
     background: #ff4d4d;
     color: white;
     border: none;
@@ -78,14 +165,13 @@ body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; }
     transition: 0.2s;
 }
 
-.btn-del:hover {
+.boton_eliminar_item:hover{
     background: #cc0000;
     transform: scale(1.1);
 }
 
-/* Ajuste para que la tabla tenga espacio para la nueva columna */
-.bill-table th:last-child, 
-.bill-table td:last-child {
+.tabla_factura th:last-child, 
+.tabla_factura td:last-child{
     text-align: center;
     width: 40px;
 }

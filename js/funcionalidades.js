@@ -1,22 +1,20 @@
-// Lógica del Carrusel
-let currentSlide = 0;
-const slides = document.querySelectorAll('.carousel-slide');
+let actual = 0;
+const deslices = document.querySelectorAll('.desliz_carrusel');
 
-function showSlide(index) {
-    slides.forEach(slide => slide.classList.remove('active'));
+function muestraDesliz(indice) {
+    deslices.forEach(desliz => desliz.classList.remove('activo'));
     
-    if (index >= slides.length) currentSlide = 0;
-    if (index < 0) currentSlide = slides.length - 1;
+    if (indice >= deslices.length) actual = 0;
+    if (indice < 0) actual = deslices.length - 1;
     
-    slides[currentSlide].classList.add('active');
+    deslices[actual].classList.add('activo');
 }
 
-function moveSlide(step) {
-    currentSlide += step;
-    showSlide(currentSlide);
+function mueveDesliz(salto) {
+    actual += salto;
+    muestraDesliz(actual);
 }
 
-// Cambio automático cada 5 segundos
 setInterval(() => {
-    moveSlide(1);
+    mueveDesliz(1);
 }, 5000);

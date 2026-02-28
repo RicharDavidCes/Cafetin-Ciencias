@@ -9,58 +9,61 @@ let resenasAdmin = [
     { id: 102, nombre: "MariaCiencias", info: "El café estaba un poco frío hoy.", tipo: "Reseña" }
 ];
 
-let vistaActual = 'Producto'; // Por defecto vemos el menú
+let vistaActual = 'Producto';
 
 function renderizarGestion() {
-    const tableBody = document.getElementById('admin-items-body');
-    tableBody.innerHTML = '';
+    const cuerpoTabla = document.getElementById('cuerpo_items_admin');
+    cuerpoTabla.innerHTML = '';
 
-    // Decidimos qué array mostrar según la vista actual
     const datosAMostrar = (vistaActual === 'Producto') ? menuAdmin : resenasAdmin;
 
-    datosAMostrar.forEach((item, index) => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
+    datosAMostrar.forEach((item, indice) => {
+        const fila = document.createElement('tr');
+        fila.innerHTML = `
             <td><strong>${item.nombre}</strong></td>
-            <td><span class="badge ${item.tipo.toLowerCase()}">${item.tipo}</span></td>
+            <td><span class="distintivo ${item.tipo.toLowerCase()}">${item.tipo}</span></td>
             <td>${item.tipo === 'Producto' ? '$' + item.precio.toFixed(2) : item.info}</td>
             <td>
-                <button class="btn-delete-admin" onclick="eliminarItem(${index})">Eliminar</button>
+                <button class="boton_eliminar_admin" onclick="eliminarItem(${indice})">Eliminar</button>
             </td>
         `;
-        tableBody.appendChild(row);
+        cuerpoTabla.appendChild(fila);
     });
 }
 
 function cambiarVistaAdmin(tipo) {
     vistaActual = tipo;
     
-    // Cambiar estado visual de los botones
-    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-    if(tipo === 'Producto') document.getElementById('tab-productos').classList.add('active');
-    else document.getElementById('tab-resenas').classList.add('active');
+    document.querySelectorAll('.boton_pestana').forEach(boton => boton.classList.remove('activa'));
+    if(tipo === 'Producto') {
+        document.getElementById('pestana_productos').classList.add('activa');
+    } else {
+        document.getElementById('pestana_resenas').classList.add('activa');
+    }
 
     renderizarGestion();
 }
 
-function eliminarItem(index) {
+function eliminarItem(indice) {
     if(confirm(`¿Seguro que deseas eliminar esta ${vistaActual}?`)) {
-        if(vistaActual === 'Producto') menuAdmin.splice(index, 1);
-        else resenasAdmin.splice(index, 1);
+        if(vistaActual === 'Producto') {
+            menuAdmin.splice(indice, 1);
+        } else {
+            resenasAdmin.splice(indice, 1);
+        }
         renderizarGestion();
     }
 }
 
-// El formulario de agregar producto siempre nos lleva a la vista de productos
-document.getElementById('form-producto').addEventListener('submit', function(e) {
+document.getElementById('formulario_producto').addEventListener('submit', function(e) {
     e.preventDefault();
-    const nombre = document.getElementById('admin-nombre').value;
-    const precio = parseFloat(document.getElementById('admin-precio').value);
+    const nombre = document.getElementById('admin_nombre').value;
+    const precio = parseFloat(document.getElementById('admin_precio').value);
     
     menuAdmin.push({ id: Date.now(), nombre: nombre, precio: precio, tipo: "Producto" });
     
     this.reset();
-    cambiarVistaAdmin('Producto'); // Refrescar y mostrar la lista de productos
+    cambiarVistaAdmin('Producto');
     alert("Producto agregado correctamente.");
 });
 

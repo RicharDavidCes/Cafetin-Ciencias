@@ -8,44 +8,43 @@
 </head>
 <body>
 
-    <nav class="navbar">
+    <nav class="barra_navegacion">
         <div class="logo">⚛️ CIENCIAS<span>CAFFÉ</span></div>
-        <div class="user-info">
-            <span id="puntos-lealtad">🌟 150 puntos</span>
-            <button id="btnLogout" class="btn-logout">Cerrar Sesión</button>
+        <div class="info_usuario">
+            <span id="puntos_lealtad">🌟 150 puntos</span>
+            <button id="boton_cerrar_sesion" class="boton_cerrar_sesion">Cerrar Sesión</button>
         </div>
     </nav>
 
-    <main class="container">
-        <section class="catalog">
+    <main class="contenedor">
+        <section class="catalogo">
             <h2>Menú del Día</h2>
-            <div id="product-grid" class="product-grid">
-                </div>
+            <div id="cuadricula_productos" class="cuadricula_productos"></div>
         </section>
 
-        <aside class="cart-container">
-            <div class="cart-header">
-                <h3>🛒 Mi Carrito (<span id="cart-count">0</span>)</h3>
-                <button id="btnVaciar" class="btn-clear" onclick="vaciarCarrito()">Vaciar</button>
+        <aside class="contenedor_carrito">
+            <div class="cabecera_carrito">
+                <h3>🛒 Mi Carrito (<span id="conteo_carrito">0</span>)</h3>
+                <button id="boton_vaciar" class="boton_limpiar" onclick="vaciarCarrito()">Vaciar</button>
             </div>
             
-            <div id="cart-items" class="cart-items">
-                <p class="empty-msg">Tu carrito está vacío</p>
+            <div id="items_carrito" class="items_carrito">
+                <p class="mensaje_vacio">Tu carrito está vacío</p>
             </div>
 
-            <div class="cart-footer">
-                <div class="total-row">
+            <div class="pie_carrito">
+                <div class="fila_total">
                     <span>Subtotal:</span>
-                    <span id="cart-total">$0.00</span>
+                    <span id="total_carrito">$0.00</span>
                 </div>
-                <button id="btnFinalizar" class="btn-checkout" onclick="finalizarPedido()">Finalizar Pedido</button>
+                <button id="boton_finalizar" class="boton_pago" onclick="finalizarPedido()">Finalizar Pedido</button>
             </div>
         </aside>
     </main>
 
-    <section class="history-section">
+    <section class="seccion_historial">
         <h3>📜 Historial de Compras</h3>
-        <table class="history-table">
+        <table class="tabla_historial">
             <thead>
                 <tr>
                     <th>Fecha</th>
@@ -53,7 +52,7 @@
                     <th>Total</th>
                 </tr>
             </thead>
-            <tbody id="history-body">
+            <tbody id="cuerpo_historial">
                 <tr>
                     <td>15/02/2026</td>
                     <td>2x Empanada de Queso, 1x Café Grande</td>

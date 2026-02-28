@@ -8,41 +8,41 @@
 </head>
 <body>
 
-    <nav class="navbar">
+    <nav class="barra_navegacion">
         <div class="logo">⚛️ CIENCIAS<span>CAFFÉ</span> <small>| ADMIN</small></div>
-        <button class="btn-logout" onclick="window.location.href='login.html'">Cerrar Sesión</button>
+        <button class="boton_cerrar_sesion" onclick="window.location.href='login.html'">Cerrar Sesión</button>
     </nav>
 
-    <main class="admin-container">
-        <section class="admin-card">
+    <main class="contenedor_admin">
+        <section class="tarjeta_admin">
             <h3>➕ Agregar Nuevo Producto</h3>
-            <form id="form-producto" class="admin-form">
-                <div class="input-group">
+            <form id="formulario_producto" class="formulario_admin">
+                <div class="grupo_entrada">
                     <label>Nombre del Producto</label>
-                    <input type="text" id="admin-nombre" placeholder="Ej: Galleta de Avena" required>
+                    <input type="text" id="admin_nombre" placeholder="Ej: Galleta de Avena" required>
                 </div>
-                <div class="input-group">
+                <div class="grupo_entrada">
                     <label>Precio ($)</label>
-                    <input type="number" id="admin-precio" step="0.01" placeholder="0.00" required>
+                    <input type="number" id="admin_precio" step="0.01" placeholder="0.00" required>
                 </div>
-                <div class="input-group">
+                <div class="grupo_entrada">
                     <label>URL de la Imagen (simulada en /img/)</label>
-                    <input type="text" id="admin-url" placeholder="img/producto.png" required>
+                    <input type="text" id="admin_url" placeholder="img/producto.png" required>
                 </div>
-                <button type="submit" class="btn-save">Guardar en Menú</button>
+                <button type="submit" class="boton_guardar">Guardar en Menú</button>
             </form>
         </section>
 
-        <section class="admin-card">
-            <div class="admin-card-header">
+        <section class="tarjeta_admin">
+            <div class="cabecera_tarjeta_admin">
                 <h3>🗑️ Gestión de Contenido</h3>
-                <div class="admin-tabs">
-                    <button id="tab-productos" class="tab-btn active" onclick="cambiarVistaAdmin('Producto')">Menú</button>
-                    <button id="tab-resenas" class="tab-btn" onclick="cambiarVistaAdmin('Reseña')">Reseñas</button>
+                <div class="pestanas_admin">
+                    <button id="pestana_productos" class="boton_pestana activa" onclick="cambiarVistaAdmin('Producto')">Menú</button>
+                    <button id="pestana_resenas" class="boton_pestana" onclick="cambiarVistaAdmin('Reseña')">Reseñas</button>
                 </div>
             </div>
-            <div class="table-wrapper">
-                <table class="admin-table">
+            <div class="envoltura_tabla">
+                <table class="tabla_admin">
                     <thead>
                         <tr>
                             <th>Ítem / Usuario</th>
@@ -51,7 +51,7 @@
                             <th>Acción</th>
                         </tr>
                     </thead>
-                    <tbody id="admin-items-body">
+                    <tbody id="cuerpo_items_admin">
                         </tbody>
                 </table>
             </div>

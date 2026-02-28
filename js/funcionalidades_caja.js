@@ -1,4 +1,3 @@
-/* --- BASE DE DATOS DE PRODUCTOS --- */
 const productos = [
     { id: 1, nombre: "Empanada", precio: 2.50, color: "#f2c811", cat: "comida" },
     { id: 2, nombre: "Café", precio: 1.50, color: "#6f4e37", cat: "bebida" },
@@ -9,31 +8,28 @@ const productos = [
 
 let ventaActual = [];
 
-/* --- RENDERIZADO DE PRODUCTOS --- */
 function mostrarProductos(categoria = 'todos') {
-    const grid = document.getElementById('pos-grid');
-    if (!grid) return;
-    grid.innerHTML = ''; 
+    const cuadricula = document.getElementById('cuadricula_pos');
+    if (!cuadricula) return;
+    cuadricula.innerHTML = ''; 
 
     const filtrados = categoria === 'todos' ? productos : productos.filter(p => p.cat === categoria);
 
     filtrados.forEach(p => {
-        const btn = document.createElement('div');
-        btn.className = 'pos-button';
-        btn.style.borderLeft = `8px solid ${p.color}`;
-        btn.innerHTML = `<strong>${p.nombre}</strong><span>$${p.precio.toFixed(2)}</span>`;
-        btn.onclick = () => agregarALaVenta(p.id);
-        grid.appendChild(btn);
+        const boton = document.createElement('div');
+        boton.className = 'boton_pos';
+        boton.style.borderLeft = `8px solid ${p.color}`;
+        boton.innerHTML = `<strong>${p.nombre}</strong><span>$${p.precio.toFixed(2)}</span>`;
+        boton.onclick = () => agregarALaVenta(p.id);
+        cuadricula.appendChild(boton);
     });
 }
 
 function filtrarProductos(cat) {
-    document.querySelectorAll('.tab').forEach(btn => btn.classList.remove('active'));
-    event.currentTarget.classList.add('active');
+    document.querySelectorAll('.pestana').forEach(p => p.classList.remove('activa'));
+    event.currentTarget.classList.add('activa');
     mostrarProductos(cat);
 }
-
-/* --- LÓGICA DE VENTA --- */
 
 function agregarALaVenta(id) {
     const producto = productos.find(p => p.id === id);
@@ -44,62 +40,61 @@ function agregarALaVenta(id) {
     } else {
         ventaActual.push({ ...producto, cantidad: 1 });
     }
-    actualizarTabla(); // <--- IMPORTANTE: Llamamos a la función que tiene el botón
+    actualizarTabla();
 }
 
 function quitarProducto(id) {
-    const itemIndex = ventaActual.findIndex(item => item.id === id);
-    if (itemIndex > -1) {
-        if (ventaActual[itemIndex].cantidad > 1) {
-            ventaActual[itemIndex].cantidad--;
+    const indice_item = ventaActual.findIndex(item => item.id === id);
+    if (indice_item > -1) {
+        if (ventaActual[indice_item].cantidad > 1) {
+            ventaActual[indice_item].cantidad--;
         } else {
-            ventaActual.splice(itemIndex, 1);
+            ventaActual.splice(indice_item, 1);
         }
     }
     actualizarTabla(); 
 }
 
-// Esta es la única función que debe dibujar la tabla
 function actualizarTabla() {
-    const body = document.getElementById('bill-items');
-    const totalTxt = document.getElementById('pos-total');
-    if (!body || !totalTxt) return;
+    const cuerpoFactura = document.getElementById('items_factura');
+    const textoTotal = document.getElementById('total_pos');
+    if (!cuerpoFactura || !textoTotal) return;
 
-    body.innerHTML = ""; 
+    cuerpoFactura.innerHTML = ""; 
     let total = 0;
 
     ventaActual.forEach(item => {
         const subtotalItem = item.precio * item.cantidad;
         total += subtotalItem;
         
-        const row = document.createElement('tr');
-        row.innerHTML = `
+        const fila = document.createElement('tr');
+        fila.innerHTML = `
             <td>${item.nombre}</td>
             <td>${item.cantidad}</td>
             <td>$${subtotalItem.toFixed(2)}</td>
             <td>
-                <button class="btn-del" onclick="quitarProducto(${item.id})">✖</button>
+                <button class="boton_eliminar_item" onclick="quitarProducto(${item.id})">✖</button>
             </td>
         `;
-        body.appendChild(row);
+        cuerpoFactura.appendChild(fila);
     });
-    totalTxt.innerText = `$${total.toFixed(2)}`;
+    textoTotal.innerText = `$${total.toFixed(2)}`;
 }
 
 function emitirRecibo() {
     if (ventaActual.length === 0) {
-        alert("⚠️ Error: No hay productos en la lista.");
+        alert(" Error: No hay productos en la lista.");
         return;
     }
-    alert("📄 Recibo Emitido\n¡Gracias por su compra!");
+    alert(" Recibo Emitido\n¡Gracias por su compra!");
     ventaActual = [];
     actualizarTabla();
 }
 
 window.onload = () => {
     mostrarProductos('todos');
-    const user = JSON.parse(localStorage.getItem('usuarioActivo'));
-    if (user && document.getElementById('nombre-cajero')) {
-        document.getElementById('nombre-cajero').innerText = user.user;
+    const usuario = JSON.parse(localStorage.getItem('usuarioActivo'));
+    if (usuario && document.getElementById('nombre_cajero')) {
+        document.getElementById('nombre_cajero').innerText = usuario.user;
     }
 };

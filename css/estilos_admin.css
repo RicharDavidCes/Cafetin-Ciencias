@@ -1,39 +1,118 @@
-:root {
+:root{
     --primary: #f2c811;
     --dark: #222;
     --danger: #ff4d4d;
     --bg: #f4f4f4;
 }
 
-body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; }
+body{
+    font-family: 'Segoe UI', sans-serif;
+    background: var(--bg);
+    margin: 0;
+}
 
-.navbar { background: var(--dark); color: white; padding: 15px 5%; display: flex; justify-content: space-between; align-items: center; }
-.logo span { color: var(--primary); }
+.barra_navegacion{
+    background: var(--dark);
+    color: white;
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
-.admin-container { padding: 30px 5%; display: grid; grid-template-columns: 1fr 2fr; gap: 20px; }
+.logo span{
+    color: var(--primary);
+}
 
-.admin-card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.contenedor_admin{
+    padding: 30px 5%;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+}
 
-.admin-form { display: flex; flex-direction: column; gap: 15px; }
-.input-group { display: flex; flex-direction: column; gap: 5px; }
-.input-group input { padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+.tarjeta_admin{
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
 
-.btn-save { background: var(--dark); color: var(--primary); border: none; padding: 12px; border-radius: 5px; cursor: pointer; font-weight: bold; }
-.btn-save:hover { background: #333; }
+.formulario_admin{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
 
-.admin-table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-.admin-table th, .admin-table td { text-align: left; padding: 12px; border-bottom: 1px solid #eee; }
+.grupo_entrada{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
 
-.badge { padding: 4px 8px; border-radius: 4px; font-size: 0.8rem; font-weight: bold; }
-.badge.producto { background: #e3f2fd; color: #1976d2; }
-.badge.reseña { background: #f3e5f5; color: #7b1fa2; }
+.grupo_entrada input{
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
 
-.btn-delete-admin { background: var(--danger); color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; }
-.btn-delete-admin:hover { background: #cc0000; }
+.boton_guardar{
+    background: var(--dark);
+    color: var(--primary);
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
 
-@media (max-width: 900px) { .admin-container { grid-template-columns: 1fr; } }
+.boton_guardar:hover{
+    background: #333;
+}
 
-.admin-card-header {
+.tabla_admin{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+.tabla_admin th, .tabla_admin td{
+    text-align: left;
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+}
+
+.distintivo{
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.distintivo.producto{
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.distintivo.reseña{
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.boton_eliminar_admin{
+    background: var(--danger);
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.boton_eliminar_admin:hover{
+    background: #cc0000;
+}
+
+.cabecera_tarjeta_admin{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -42,14 +121,14 @@ body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; }
     gap: 10px;
 }
 
-.admin-tabs {
+.pestanas_admin{
     display: flex;
     background: #eee;
     padding: 5px;
     border-radius: 8px;
 }
 
-.tab-btn {
+.boton_pestana{
     border: none;
     padding: 8px 15px;
     cursor: pointer;
@@ -59,12 +138,18 @@ body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; }
     transition: 0.3s;
 }
 
-.tab-btn.active {
+.boton_pestana.activa{
     background: white;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     color: var(--dark);
 }
 
-.tab-btn:hover:not(.active) {
+.boton_pestana:hover:not(.activa){
     background: #e0e0e0;
+}
+
+@media (max-width: 900px){
+    .contenedor_admin{
+        grid-template-columns: 1fr;
+    }
 }
