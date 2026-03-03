@@ -9,10 +9,28 @@
 <body>
 
     <nav class="barra_navegacion">
-        <div class="logo">⚛️ CIENCIAS<span>CAFFÉ</span></div>
-        <div class="info_usuario">
-            <span id="puntos_lealtad">🌟 150 puntos</span>
-            <button id="boton_cerrar_sesion" class="boton_cerrar_sesion">Cerrar Sesión</button>
+        <div class="nav_wrapper">
+            <div class="logo">
+                <span class="icono_atomo">⚛️</span> 
+                CIENCIAS<span>CAFFÉ</span>
+                <span class="tag_cliente">CLIENTE</span>
+            </div>
+            
+            <div class="info_usuario">
+                <div class="contenedor_puntos">
+                    <span class="emoji_puntos">🌟</span>
+                    <span id="puntos_lealtad">150 <small>PUNTOS</small></span>
+                </div>
+
+                <button class="btn_carrito_flotante" onclick="toggleCarrito()">
+                    🛒 <span id="conteo_flotante">0</span>
+                </button>
+                
+                <button class="btn_logout" onclick="window.location.href='login.html'">
+                    Cerrar Sesión
+                    <span class="flecha_css"></span>                    
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -21,26 +39,33 @@
             <h2>Menú del Día</h2>
             <div id="cuadricula_productos" class="cuadricula_productos"></div>
         </section>
-
-        <aside class="contenedor_carrito">
-            <div class="cabecera_carrito">
-                <h3>🛒 Mi Carrito (<span id="conteo_carrito">0</span>)</h3>
-                <button id="boton_vaciar" class="boton_limpiar" onclick="vaciarCarrito()">Vaciar</button>
-            </div>
-            
-            <div id="items_carrito" class="items_carrito">
-                <p class="mensaje_vacio">Tu carrito está vacío</p>
-            </div>
-
-            <div class="pie_carrito">
-                <div class="fila_total">
-                    <span>Subtotal:</span>
-                    <span id="total_carrito">$0.00</span>
-                </div>
-                <button id="boton_finalizar" class="boton_pago" onclick="finalizarPedido()">Finalizar Pedido</button>
-            </div>
-        </aside>
     </main>
+
+    <div id="carrito_overlay" class="carrito_overlay" onclick="toggleCarrito()"></div>
+    <aside id="carrito_drawer" class="carrito_drawer">
+        <div class="cabecera_drawer">
+            <h3>🛒 Mi Carrito (<span id="conteo_carrito">0</span>)</h3>
+            <button class="btn_cerrar" onclick="toggleCarrito()">×</button>
+        </div>
+        
+        <div class="cuerpo_drawer">
+            <div id="items_carrito" class="items_carrito">
+                </div>
+        </div>
+
+        <div class="pie_drawer">
+            <div class="fila_total">
+                <span>Total a Pagar:</span>
+                <span id="total_carrito">$0.00</span>
+            </div>
+            <div class="acciones_drawer">
+                <button class="boton_limpiar" onclick="vaciarCarrito()">Vaciar Carrito</button>
+                <button id="boton_finalizar" class="boton_pago" onclick="finalizarPedido()">
+                    FINALIZAR PEDIDO
+                </button>
+            </div>
+        </div>
+    </aside>
 
     <section class="seccion_historial">
         <h3>📜 Historial de Compras</h3>
@@ -53,12 +78,7 @@
                 </tr>
             </thead>
             <tbody id="cuerpo_historial">
-                <tr>
-                    <td>15/02/2026</td>
-                    <td>2x Empanada de Queso, 1x Café Grande</td>
-                    <td>$7.50</td>
-                </tr>
-            </tbody>
+                </tbody>
         </table>
     </section>
 

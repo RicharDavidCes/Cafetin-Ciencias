@@ -5,7 +5,7 @@ let menuAdmin = [
 ];
 
 let resenasAdmin = [
-    { id: 101, nombre: "JuanPerez_UCV", info: "¡Las mejores empanadas de la facultad!", tipo: "Reseña" },
+    { id: 101, nombre: "Pedro.Perez123", info: "¡Las mejores empanadas de la facultad!", tipo: "Reseña" },
     { id: 102, nombre: "MariaCiencias", info: "El café estaba un poco frío hoy.", tipo: "Reseña" }
 ];
 

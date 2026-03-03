@@ -9,10 +9,19 @@
 <body>
 
     <nav class="barra_navegacion">
-        <div class="logo">⚛️ CIENCIAS<span>CAFFÉ</span> <small>| CAJA</small></div>
-        <div class="info_usuario">
-            <span>👤 Operador: <strong id="nombre_cajero">Cajero_01</strong></span>
-            <button id="boton_salir" class="boton_salir" onclick="window.location.href='login.html'">Salir</button>
+        <div class="nav_wrapper">
+            <div class="logo">
+                <span class="icono_atomo">⚛️</span> 
+                CIENCIAS<span>CAFFÉ</span> 
+                <span class="tag_admin">CAJA</span>
+            </div>
+            
+            <div class="acciones">
+                <button class="btn_logout" onclick="window.location.href='login.html'">
+                    Cerrar Sesión
+                    <span class="flecha_css"></span>
+                </button>
+            </div>
         </div>
     </nav>
 
@@ -29,28 +38,40 @@
         </section>
 
         <aside class="area_facturacion">
-            <h3>Resumen de Venta</h3>
+            <div class="cabecera_factura">
+                <h3>FACTURACIÓN</h3>
+                <span class="fecha_actual" id="fecha_pos"></span>
+            </div>
+
             <div class="contenedor_tabla_factura">
                 <table class="tabla_factura">
                     <thead>
                         <tr>
                             <th>Producto</th>
-                            <th>Cant.</th>
-                            <th>Subt.</th>
-                            <th>Acción</th> </tr>
+                            <th class="txt_centro">Cant.</th>
+                            <th class="txt_derecha">Subt.</th>
+                            <th class="txt_centro">Acción</th>
+                        </tr>
                     </thead>
                     <tbody id="items_factura">
                         </tbody>
                 </table>
             </div>
 
-            <div class="resumen_factura">
-                <div class="fila_resumen total">
-                    <span>TOTAL:</span>
-                    <span id="total_pos">$0.00</span>
+            <div class="modulo_pago">
+                <div class="resumen_detallado">
+                    <div class="fila_resumen">
+                        <span>Subtotal:</span>
+                        <span id="subtotal_pos">$0.00</span>
+                    </div>
+                    <div class="fila_resumen total">
+                        <span>TOTAL A PAGAR:</span>
+                        <span id="total_pos">$0.00</span>
+                    </div>
                 </div>
+                
                 <button id="boton_emitir" class="boton_emitir" onclick="emitirRecibo()">
-                    📄 EMITIR RECIBO
+                    <span class="icono_recibo">📄</span> EMITIR RECIBO
                 </button>
             </div>
         </aside>

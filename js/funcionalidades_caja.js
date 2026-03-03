@@ -58,6 +58,8 @@ function quitarProducto(id) {
 function actualizarTabla() {
     const cuerpoFactura = document.getElementById('items_factura');
     const textoTotal = document.getElementById('total_pos');
+    const subtotal_pos = document.getElementById('subtotal_pos');
+    
     if (!cuerpoFactura || !textoTotal) return;
 
     cuerpoFactura.innerHTML = ""; 
@@ -70,15 +72,17 @@ function actualizarTabla() {
         const fila = document.createElement('tr');
         fila.innerHTML = `
             <td>${item.nombre}</td>
-            <td>${item.cantidad}</td>
-            <td>$${subtotalItem.toFixed(2)}</td>
-            <td>
+            <td class="txt_centro">${item.cantidad}</td>
+            <td class="txt_derecha">$${subtotalItem.toFixed(2)}</td>
+            <td class="txt_centro">
                 <button class="boton_eliminar_item" onclick="quitarProducto(${item.id})">✖</button>
             </td>
         `;
         cuerpoFactura.appendChild(fila);
     });
+
     textoTotal.innerText = `$${total.toFixed(2)}`;
+    if(subtotal_pos) subtotal_pos.innerText = `$${total.toFixed(2)}`;
 }
 
 function emitirRecibo() {
@@ -93,6 +97,13 @@ function emitirRecibo() {
 
 window.onload = () => {
     mostrarProductos('todos');
+    
+    const fechaPos = document.getElementById('fecha_pos');
+    if(fechaPos) {
+        const d = new Date();
+        fechaPos.innerText = d.toLocaleDateString();
+    }
+
     const usuario = JSON.parse(localStorage.getItem('usuarioActivo'));
     if (usuario && document.getElementById('nombre_cajero')) {
         document.getElementById('nombre_cajero').innerText = usuario.user;

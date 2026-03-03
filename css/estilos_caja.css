@@ -1,7 +1,10 @@
 :root{
     --primary: #f2c811;
     --dark: #222;
+    --danger: #ff4d4d;
     --bg: #e5e5e5;
+    --white: #ffffff;
+    --text-muted: #888;
 }
 
 body{ 
@@ -10,19 +13,98 @@ body{
     margin: 0; 
 }
 
-.barra_navegacion{ 
-    background: var(--dark); 
-    color: white; 
-    padding: 10px 5%; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
+/* --- Navegación --- */
+.barra_navegacion {
+    background: var(--dark);
+    padding: 15px 0;
+    border-bottom: 3px solid var(--primary);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-.logo span{ 
-    color: var(--primary); 
+.nav_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
+.logo {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--primary);
+}
+
+.icono_atomo {
+    display: inline-block;
+    margin-right: 10px;
+    transition: transform 0.6s ease;
+}
+
+.logo:hover .icono_atomo {
+    transform: rotate(180deg);
+}
+
+.tag_admin {
+    font-size: 0.7rem;
+    color: black !important;
+    background: var(--primary);
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-left: 12px;
+    font-weight: 800;
+}
+
+/* --- Botón Salida --- */
+.btn_logout {
+    background: transparent;
+    color: #fff;
+    border: 2px solid var(--danger);
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.btn_logout:hover {
+    background: var(--danger);
+    color: white;
+    transform: scale(1.05);
+}
+
+.flecha_css {
+    width: 10px;
+    height: 2px;
+    background: currentColor;
+    position: relative;
+    display: inline-block;
+}
+
+.flecha_css::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: -3px;
+    width: 6px;
+    height: 6px;
+    border-right: 2px solid currentColor;
+    border-top: 2px solid currentColor;
+    transform: rotate(45deg);
+}
+
+/* --- Estructura Principal POS --- */
 .contenedor_pos{ 
     display: flex; 
     height: calc(100vh - 60px); 
@@ -30,101 +112,14 @@ body{
     gap: 20px; 
 }
 
+/* --- Área de Selección --- */
 .area_seleccion{ 
     flex: 2; 
     background: white; 
     border-radius: 10px; 
     padding: 20px; 
-}
-
-.cuadricula_pos{ 
-    display: grid; 
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
-    gap: 15px; 
-    margin-top: 20px; 
-}
-
-.boton_pos{
-    background: #f9f9f9; 
-    padding: 20px; 
-    border-radius: 8px; 
-    cursor: pointer;
-    display: flex; 
-    flex-direction: column; 
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    transition: 0.2s; border: 1px solid #ddd;
-}
-
-.boton_pos:active{ 
-    transform: scale(0.95); 
-    background: #eee; 
-}
-
-.area_facturacion{ 
-    flex: 1; 
-    background: #fff; 
-    border-radius: 10px; 
-    padding: 20px; 
-    display: flex; 
-    flex-direction: column; 
-    border: 2px solid var(--dark); 
-}
-
-.contenedor_tabla_factura{ 
-    flex: 1; 
-    overflow-y: auto; 
-    margin: 15px 0; 
-}
-
-.tabla_factura{ 
-    width: 100%; 
-    border-collapse: collapse; 
-}
-
-.tabla_factura th{ 
-    text-align: left; 
-    border-bottom: 2px solid var(--dark); 
-    padding: 8px; 
-}
-
-.tabla_factura td{ 
-    padding: 8px; 
-    border-bottom: 1px solid #eee; 
-}
-
-.resumen_factura{ 
-    background: var(--dark); 
-    color: white; 
-    padding: 20px; 
-    border-radius: 8px; 
-}
-
-.fila_resumen{ 
-    display: flex; 
-    justify-content: space-between; 
-    font-size: 1.2rem; 
-    font-weight: bold; 
-    margin-bottom: 15px; 
-}
-
-.fila_resumen.total{ 
-    color: var(--primary); 
-    font-size: 1.5rem; 
-}
-
-.boton_emitir{
-    width: 100%; 
-    background: var(--primary); 
-    border: none; 
-    padding: 15px;
-    font-size: 1.1rem; 
-    font-weight: bold; 
-    cursor: pointer; 
-    border-radius: 5px;
-}
-
-.boton_emitir:hover{ 
-    background: #d4b00f; 
+    display: flex;
+    flex-direction: column;
 }
 
 .pestanas_categorias{
@@ -149,9 +144,88 @@ body{
     color: var(--dark);
 }
 
-.pestana:hover:not(.activa){
-    background: #f0f0f0;
+.cuadricula_pos{ 
+    display: grid; 
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); 
+    gap: 15px; 
+    margin-top: 20px;
+    overflow-y: auto;
 }
+
+.boton_pos{
+    background: #f9f9f9; 
+    padding: 20px; 
+    border-radius: 8px; 
+    cursor: pointer;
+    display: flex; 
+    flex-direction: column; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: 0.2s;
+    border: 1px solid #ddd;
+}
+
+.boton_pos:active{ 
+    transform: scale(0.95); 
+    background: #eee; 
+}
+
+/* --- REFACTORIZACIÓN: Área de Facturación (Aside) --- */
+.area_facturacion{ 
+    flex: 1; 
+    background: #fff; 
+    border-radius: 10px; 
+    display: flex; 
+    flex-direction: column; 
+    border: 2px solid var(--dark); 
+    overflow: hidden;
+}
+
+.cabecera_factura {
+    background: var(--dark);
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+.cabecera_factura h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.contenedor_tabla_factura{ 
+    flex: 1; 
+    overflow-y: auto; 
+    padding: 10px;
+}
+
+.tabla_factura{ 
+    width: 100%; 
+    border-collapse: collapse; 
+}
+
+.tabla_factura th{ 
+    text-align: left; 
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    padding: 10px 5px;
+    border-bottom: 2px solid var(--dark);
+    position: sticky;
+    top: 0;
+    background: white;
+}
+
+.tabla_factura td{ 
+    padding: 12px 5px; 
+    border-bottom: 1px solid #eee;
+    font-size: 0.9rem;
+}
+
+/* Clases de alineación para la tabla */
+.txt_centro { text-align: center; }
+.txt_derecha { text-align: right; }
 
 .boton_eliminar_item{
     background: #ff4d4d;
@@ -167,11 +241,65 @@ body{
 
 .boton_eliminar_item:hover{
     background: #cc0000;
-    transform: scale(1.1);
 }
 
-.tabla_factura th:last-child, 
-.tabla_factura td:last-child{
-    text-align: center;
-    width: 40px;
+/* --- Módulo de Pago --- */
+.modulo_pago {
+    background: #f9f9f9;
+    padding: 20px;
+    border-top: 2px solid var(--dark);
+}
+
+.fila_resumen{ 
+    display: flex; 
+    justify-content: space-between; 
+    font-size: 1rem; 
+    font-weight: 600; 
+    margin-bottom: 10px; 
+}
+
+.fila_resumen.total{ 
+    color: var(--dark); 
+    font-size: 1.5rem;
+    border-top: 1px dashed #ccc;
+    padding-top: 15px;
+    margin-top: 10px;
+}
+
+.fila_resumen.total #total_pos {
+    color: #27ae60;
+    font-weight: 800;
+}
+
+.boton_emitir{
+    width: 100%; 
+    background: var(--primary); 
+    border: 2px solid var(--dark); 
+    padding: 15px;
+    font-size: 1.1rem; 
+    font-weight: bold; 
+    cursor: pointer; 
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    transition: 0.2s;
+}
+
+.boton_emitir:hover{ 
+    background: var(--dark);
+    color: var(--primary);
+}
+
+/* --- Responsive --- */
+@media (max-width: 1100px){
+    .contenedor_pos{
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .area_facturacion {
+        height: 500px;
+    }
 }

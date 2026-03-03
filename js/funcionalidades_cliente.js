@@ -6,9 +6,21 @@ const productos = [
 ];
 
 let carrito = [];
+let historialCompras = [
+    { fecha: "15/02/2026", detalles: "2x Empanada de Queso, 1x Café Grande", total: "$7.50" }
+];
+
+function toggleCarrito() {
+    const drawer = document.getElementById('carrito_drawer');
+    const overlay = document.getElementById('carrito_overlay');
+    drawer.classList.toggle('active');
+    overlay.style.display = drawer.classList.contains('active') ? 'block' : 'none';
+}
 
 function cargarCatalogo() {
     const grid = document.getElementById('cuadricula_productos');
+    if(!grid) return;
+    grid.innerHTML = '';
     productos.forEach(prod => {
         const card = document.createElement('div');
         card.className = 'tarjeta_producto';
@@ -16,7 +28,7 @@ function cargarCatalogo() {
             <div class="icono_prod">${prod.icono}</div>
             <h4>${prod.nombre}</h4>
             <p>$${prod.precio.toFixed(2)}</p>
-            <button onclick="agregarAlCarrito(${prod.id})" class="boton_agregar">Añadir a Carrito</button>
+            <button onclick="agregarAlCarrito(${prod.id})" class="boton_agregar">Añadir</button>
         `;
         grid.appendChild(card);
     });
@@ -34,93 +46,63 @@ function eliminarDelCarrito(indice) {
 }
 
 function actualizarInterfazCarrito() {
-    const listaCarrito = document.getElementById('items_carrito');
-    const spanConteo = document.getElementById('conteo_carrito');
-    const spanTotal = document.getElementById('total_carrito');
+    const lista = document.getElementById('items_carrito');
+    const conteo = document.getElementById('conteo_carrito');
+    const conteoF = document.getElementById('conteo_flotante');
+    const totalS = document.getElementById('total_carrito');
     
-    listaCarrito.innerHTML = '';
+    lista.innerHTML = '';
     let total = 0;
 
     if (carrito.length === 0) {
-        listaCarrito.innerHTML = '<p class="mensaje_vacio">Tu carrito está vacío</p>';
+        lista.innerHTML = '<p class="mensaje_vacio">Carrito vacío</p>';
     } else {
-        carrito.forEach((item, indice) => {
+        carrito.forEach((item, i) => {
             const div = document.createElement('div');
-            div.className = 'item_carrito';
+            div.style.display = 'flex';
+            div.style.justifyContent = 'space-between';
+            div.style.marginBottom = '10px';
             div.innerHTML = `
-                <div class="info_item_carrito">
-                    <span>${item.nombre}</span>
-                    <span class="precio">$${item.precio.toFixed(2)}</span>
+                <span>${item.nombre}</span>
+                <div>
+                    <span>$${item.precio.toFixed(2)}</span>
+                    <button onclick="eliminarDelCarrito(${i})" style="border:none; background:none; cursor:pointer;">🗑️</button>
                 </div>
-                <button onclick="eliminarDelCarrito(${indice})" class="boton_eliminar" title="Quitar producto">🗑️</button>
             `;
-            listaCarrito.appendChild(div);
+            lista.appendChild(div);
             total += item.precio;
         });
     }
 
-    spanConteo.innerText = carrito.length;
-    spanTotal.innerText = `$${total.toFixed(2)}`;
+    conteo.innerText = carrito.length;
+    conteoF.innerText = carrito.length;
+    totalS.innerText = `$${total.toFixed(2)}`;
 }
-
-function vaciarCarrito() {
-    if (carrito.length > 0) {
-        if (confirm("¿Seguro que quieres vaciar todo el carrito?")) {
-            carrito = [];
-            actualizarInterfazCarrito();
-        }
-    }
-}
-
-let historialCompras = [
-    { fecha: "15/02/2026", detalles: "2x Empanada de Queso, 1x Café Grande", total: "$7.50" }
-];
 
 function finalizarPedido() {
-    if (carrito.length === 0) {
-        alert("¡Tu carrito está vacío! Agrega algo antes de comprar.");
-        return;
-    }
-
-    let totalPedido = 0;
-    const nombresProductos = carrito.map(p => {
-        totalPedido += p.precio;
-        return p.nombre;
-    });
+    if (carrito.length === 0) return alert("Carrito vacío");
 
     const nuevaCompra = {
         fecha: new Date().toLocaleDateString(),
-        detalles: nombresProductos.join(", "),
-        total: `$${totalPedido.toFixed(2)}`
+        detalles: carrito.map(p => p.nombre).join(", "),
+        total: document.getElementById('total_carrito').innerText
     };
 
     historialCompras.push(nuevaCompra);
     carrito = [];
     actualizarInterfazCarrito();
     actualizarTablaHistorial();
-
-    alert("Pedido finalizado con éxito. Revisa tu historial.");
+    toggleCarrito();
+    alert("¡Pedido finalizado!");
 }
 
 function actualizarTablaHistorial() {
-    const cuerpoHistorial = document.getElementById('cuerpo_historial');
-    cuerpoHistorial.innerHTML = '';
-
-    [...historialCompras].reverse().forEach(compra => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${compra.fecha}</td>
-            <td>${compra.detalles}</td>
-            <td><strong>${compra.total}</strong></td>
-        `;
-        cuerpoHistorial.appendChild(row);
+    const cuerpo = document.getElementById('cuerpo_historial');
+    cuerpo.innerHTML = '';
+    [...historialCompras].reverse().forEach(c => {
+        cuerpo.innerHTML += `<tr><td>${c.fecha}</td><td>${c.detalles}</td><td>${c.total}</td></tr>`;
     });
 }
-
-document.getElementById('boton_cerrar_sesion').addEventListener('click', () => {
-    localStorage.removeItem('usuarioActivo');
-    window.location.href = 'login.html';
-});
 
 window.onload = () => {
     cargarCatalogo();
