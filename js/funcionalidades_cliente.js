@@ -1,3 +1,5 @@
+// 1. EL MENÚ DEL DÍA
+// Aquí están los productos con su nombre, precio y un emoji para que se vea bien.
 const productos = [
     { id: 1, nombre: "Empanada Operada", precio: 2.50, icono: "🥟" },
     { id: 2, nombre: "Café con Leche", precio: 1.50, icono: "☕" },
@@ -6,13 +8,15 @@ const productos = [
     { id: 5, nombre: "Tizana", precio: 1.50, icono: "🍹" }
 ];
 
-let carrito = [];
-let historialCompras = [
+// 2. MEMORIA TEMPORAL
+let carrito = []; // Lo que estás eligiendo ahorita.
+let historialCompras = [ // Una compra de prueba para que el historial no aparezca vacío.
     { fecha: "15/02/2026", detalles: "2x Empanada de Queso, 1x Café Grande", total: "$7.50" }
 ];
 
-// --- FUNCIONES DE NAVEGACIÓN ---
-
+// 3. ABRIR Y CERRAR EL CARRITO (toggleCarrito)
+// Esta función hace que el panel del carrito salga por un lado de la pantalla
+// y pone un fondo oscuro (overlay) para que resalte.
 function toggleCarrito() {
     const drawer = document.getElementById('carrito_drawer');
     const overlay = document.getElementById('carrito_overlay');
@@ -20,8 +24,9 @@ function toggleCarrito() {
     overlay.style.display = drawer.classList.contains('active') ? 'block' : 'none';
 }
 
-// --- LÓGICA DEL CATÁLOGO ---
-
+// 4. MOSTRAR EL CATÁLOGO (cargarCatalogo)
+// Recorre la lista de productos y crea "tarjetas" visuales en el HTML.
+// Cada tarjeta tiene su icono, nombre, precio y el botón para comprar.
 function cargarCatalogo() {
     const grid = document.getElementById('cuadricula_productos');
     if(!grid) return;
@@ -39,32 +44,32 @@ function cargarCatalogo() {
     });
 }
 
-// --- LÓGICA DEL CARRITO ---
-
+// 5. MANEJO DEL CARRITO
+// Añade un producto a la lista y actualiza los numeritos de la pantalla.
 function agregarAlCarrito(id) {
     const producto = productos.find(p => p.id === id);
     carrito.push(producto);
     actualizarInterfazCarrito();
 }
 
+// Borra un producto específico usando su posición en la lista.
 function eliminarDelCarrito(indice) {
     carrito.splice(indice, 1);
     actualizarInterfazCarrito();
 }
 
-/**
- * Nueva función: vaciarCarrito
- * Borra todos los elementos del carrito actual.
- */
+// Borra TODO lo que tengas en el carrito, pero primero te pregunta si estás seguro.
 function vaciarCarrito() {
     if (carrito.length === 0) return;
-    
     if (confirm("¿Estás seguro de que quieres vaciar el carrito?")) {
         carrito = [];
         actualizarInterfazCarrito();
     }
 }
 
+// 6. DIBUJAR EL CARRITO (actualizarInterfazCarrito)
+// Esta función limpia el panel del carrito y lo vuelve a llenar con lo que has elegido.
+// También suma los precios para darte el total y actualiza los contadores de la interfaz.
 function actualizarInterfazCarrito() {
     const lista = document.getElementById('items_carrito');
     const conteo = document.getElementById('conteo_carrito');
@@ -75,21 +80,16 @@ function actualizarInterfazCarrito() {
     let total = 0;
 
     if (carrito.length === 0) {
-        lista.innerHTML = '<p class="mensaje_vacio" style="text-align:center; padding:20px; color:#666;">Tu carrito está vacío</p>';
+        lista.innerHTML = '<p class="mensaje_vacio">Tu carrito está vacío</p>';
     } else {
         carrito.forEach((item, i) => {
             const div = document.createElement('div');
-            div.style.display = 'flex';
-            div.style.justifyContent = 'space-between';
-            div.style.alignItems = 'center';
-            div.style.marginBottom = '10px';
-            div.style.padding = '5px 0';
-            div.style.borderBottom = '1px solid #eee';
+            div.className = 'item_en_carrito'; // (Estilos aplicados directamente en el JS)
             div.innerHTML = `
                 <span>${item.nombre}</span>
                 <div>
-                    <span style="font-weight:bold; margin-right:10px;">$${item.precio.toFixed(2)}</span>
-                    <button onclick="eliminarDelCarrito(${i})" style="border:none; background:none; cursor:pointer; font-size:1.2rem;">🗑️</button>
+                    <span class="precio_item">$${item.precio.toFixed(2)}</span>
+                    <button onclick="eliminarDelCarrito(${i})">🗑️</button>
                 </div>
             `;
             lista.appendChild(div);
@@ -102,8 +102,9 @@ function actualizarInterfazCarrito() {
     totalS.innerText = `$${total.toFixed(2)}`;
 }
 
-// --- LÓGICA DE PEDIDOS Y HISTORIAL ---
-
+// 7. FINALIZAR COMPRA Y HISTORIAL
+// Cuando le das a "Pedir" guarda la compra en el historial, limpia el carrito
+// y te avisa que todo salió bien.
 function finalizarPedido() {
     if (carrito.length === 0) return alert("El carrito está vacío. ¡Agrega algo rico!");
 
@@ -114,19 +115,19 @@ function finalizarPedido() {
     };
 
     historialCompras.push(nuevaCompra);
-    carrito = []; // Limpiamos el carrito tras la compra
+    carrito = []; 
     actualizarInterfazCarrito();
     actualizarTablaHistorial();
-    toggleCarrito();
-    alert("¡Pedido realizado con éxito! Gracias por tu compra.");
+    toggleCarrito(); // Cierra el panel al terminar.
+    alert("¡Pedido realizado con éxito!");
 }
 
+// Toma el historial de compras y lo pone en una tabla, mostrando lo último que compraste de primero.
 function actualizarTablaHistorial() {
     const cuerpo = document.getElementById('cuerpo_historial');
     if(!cuerpo) return;
     cuerpo.innerHTML = '';
     
-    // Mostramos el historial del más reciente al más antiguo
     [...historialCompras].reverse().forEach(c => {
         const fila = document.createElement('tr');
         fila.innerHTML = `
@@ -138,8 +139,8 @@ function actualizarTablaHistorial() {
     });
 }
 
-// --- INICIALIZACIÓN ---
-
+// 8. ARRANCAR TODO
+// Apenas abre la página, carga los productos y el historial.
 window.onload = () => {
     cargarCatalogo();
     actualizarTablaHistorial();
