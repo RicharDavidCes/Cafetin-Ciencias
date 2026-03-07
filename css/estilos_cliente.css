@@ -275,6 +275,19 @@ body {
     margin-bottom: 15px;
 }
 
+.boton_limpiar {
+    background: var(--dark);
+    color: var(--primary);
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 800;
+    cursor: pointer;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
 .boton_pago {
     background: var(--dark);
     color: var(--primary);

@@ -11,12 +11,16 @@ let historialCompras = [
     { fecha: "15/02/2026", detalles: "2x Empanada de Queso, 1x Café Grande", total: "$7.50" }
 ];
 
+// --- FUNCIONES DE NAVEGACIÓN ---
+
 function toggleCarrito() {
     const drawer = document.getElementById('carrito_drawer');
     const overlay = document.getElementById('carrito_overlay');
     drawer.classList.toggle('active');
     overlay.style.display = drawer.classList.contains('active') ? 'block' : 'none';
 }
+
+// --- LÓGICA DEL CATÁLOGO ---
 
 function cargarCatalogo() {
     const grid = document.getElementById('cuadricula_productos');
@@ -35,6 +39,8 @@ function cargarCatalogo() {
     });
 }
 
+// --- LÓGICA DEL CARRITO ---
+
 function agregarAlCarrito(id) {
     const producto = productos.find(p => p.id === id);
     carrito.push(producto);
@@ -44,6 +50,19 @@ function agregarAlCarrito(id) {
 function eliminarDelCarrito(indice) {
     carrito.splice(indice, 1);
     actualizarInterfazCarrito();
+}
+
+/**
+ * Nueva función: vaciarCarrito
+ * Borra todos los elementos del carrito actual.
+ */
+function vaciarCarrito() {
+    if (carrito.length === 0) return;
+    
+    if (confirm("¿Estás seguro de que quieres vaciar el carrito?")) {
+        carrito = [];
+        actualizarInterfazCarrito();
+    }
 }
 
 function actualizarInterfazCarrito() {
@@ -56,18 +75,21 @@ function actualizarInterfazCarrito() {
     let total = 0;
 
     if (carrito.length === 0) {
-        lista.innerHTML = '<p class="mensaje_vacio">Carrito vacío</p>';
+        lista.innerHTML = '<p class="mensaje_vacio" style="text-align:center; padding:20px; color:#666;">Tu carrito está vacío</p>';
     } else {
         carrito.forEach((item, i) => {
             const div = document.createElement('div');
             div.style.display = 'flex';
             div.style.justifyContent = 'space-between';
+            div.style.alignItems = 'center';
             div.style.marginBottom = '10px';
+            div.style.padding = '5px 0';
+            div.style.borderBottom = '1px solid #eee';
             div.innerHTML = `
                 <span>${item.nombre}</span>
                 <div>
-                    <span>$${item.precio.toFixed(2)}</span>
-                    <button onclick="eliminarDelCarrito(${i})" style="border:none; background:none; cursor:pointer;">🗑️</button>
+                    <span style="font-weight:bold; margin-right:10px;">$${item.precio.toFixed(2)}</span>
+                    <button onclick="eliminarDelCarrito(${i})" style="border:none; background:none; cursor:pointer; font-size:1.2rem;">🗑️</button>
                 </div>
             `;
             lista.appendChild(div);
@@ -80,8 +102,10 @@ function actualizarInterfazCarrito() {
     totalS.innerText = `$${total.toFixed(2)}`;
 }
 
+// --- LÓGICA DE PEDIDOS Y HISTORIAL ---
+
 function finalizarPedido() {
-    if (carrito.length === 0) return alert("Carrito vacío");
+    if (carrito.length === 0) return alert("El carrito está vacío. ¡Agrega algo rico!");
 
     const nuevaCompra = {
         fecha: new Date().toLocaleDateString(),
@@ -90,20 +114,31 @@ function finalizarPedido() {
     };
 
     historialCompras.push(nuevaCompra);
-    carrito = [];
+    carrito = []; // Limpiamos el carrito tras la compra
     actualizarInterfazCarrito();
     actualizarTablaHistorial();
     toggleCarrito();
-    alert("¡Pedido finalizado!");
+    alert("¡Pedido realizado con éxito! Gracias por tu compra.");
 }
 
 function actualizarTablaHistorial() {
     const cuerpo = document.getElementById('cuerpo_historial');
+    if(!cuerpo) return;
     cuerpo.innerHTML = '';
+    
+    // Mostramos el historial del más reciente al más antiguo
     [...historialCompras].reverse().forEach(c => {
-        cuerpo.innerHTML += `<tr><td>${c.fecha}</td><td>${c.detalles}</td><td>${c.total}</td></tr>`;
+        const fila = document.createElement('tr');
+        fila.innerHTML = `
+            <td>${c.fecha}</td>
+            <td>${c.detalles}</td>
+            <td style="font-weight:bold;">${c.total}</td>
+        `;
+        cuerpo.appendChild(fila);
     });
 }
+
+// --- INICIALIZACIÓN ---
 
 window.onload = () => {
     cargarCatalogo();
