@@ -66,8 +66,10 @@
             <div class="tarjeta_social">
                 <div class="tarjeta_encabezado">
                     <img src="img/logo_redes.png" alt="CienciasCaffe" class="foto_perfil">
-                    <span class="usuario">cienciascaffe_ucv</span><br>
-                    <span class="fecha">Hace 2h</span>
+                    <div>
+                        <span class="usuario">cienciascaffe_ucv</span><br>
+                        <span class="fecha">Hace 2h</span>
+                    </div>
                 </div>
                 <img src="img/post_ig.png" alt="Post de Instagram" class="post_imagen">
                 <div class="tarjeta_accion">
@@ -77,7 +79,7 @@
                 </div>
                 <div class="likes">Les gusta a <strong>matematica_cool</strong> y <strong>1.234 más</strong></div>
                 <p class="comentarios">¡Hora de un descanso merecido! ☕ Nuestro café te espera para recargar energías. #CienciasCaffe #UCV</p>
-                <span>Ver los 37 comentarios...</span>
+                <span class="comentarios" style="color: #888; cursor: pointer;">Ver los 37 comentarios...</span>
             </div>
 
             <div class="tarjeta_social">
@@ -88,9 +90,7 @@
                         <span class="fecha">Ayer a las 14:30</span>
                     </div>
                 </div>
-                <p class="post_texto">
-                    ¡Atención futuros científicos! 📣 Buscamos nuevos talentos para el equipo. ¡Pasa por el local!
-                </p>
+                <p class="post_texto">¡Atención futuros científicos! 📣 Buscamos nuevos talentos para el equipo. ¡Pasa por el local!</p>
                 <img src="img/post_fb.png" alt="Post de Facebook" class="post_imagen">
                 <div class="tarjeta_accion_fb">
                     <span>👍 Me gusta</span>
@@ -104,7 +104,7 @@
                     <img src="img/logo_redes.png" alt="CienciasCaffe" class="foto_perfil">
                     <span class="usuario">@cienciascaffe_ucv</span>
                 </div>
-                <h3>Nuestros últimos "TikToks"</h3>
+                <h3 style="padding: 10px; font-size: 1rem;">Nuestros últimos "TikToks"</h3>
                 <div class="tiktok_rejilla">
                     <div class="tiktok_post">
                         <img src="img/post_tk1.png" alt="TikTok 1">
@@ -128,13 +128,27 @@
         <div>
             <p><strong>Ubicación:</strong> Al frente de Plaza la Langosta</p>
             <div class="sociales">
-                <span>📸</span>
-                <span>🐦</span>
-                <span>🎥</span>
+                <span>📸</span> <span>🐦</span> <span>🎥</span>
             </div>
         </div>
         <p class="copy">© 2024 Cafetín Ciencias UCV - Hecho por Estudiantes para Estudiantes.</p>
     </footer>
+
+    <div id="btn-chat-flotante" onclick="toggleChat()">💬</div>
+
+    <div id="ventana-chat" class="chat-oculto">
+        <div class="chat-header">
+            <span>👨🏻‍🍳 Asistente Virtual</span>
+            <button onclick="toggleChat()">×</button>
+        </div>
+        <div id="cuerpo-chat" class="chat-body">
+            <p class="msg-bot">¡Hola! Soy el asistente virutal. ¿tiene alguna duda sobre el cafetin? puedes preguntarme la direccion, las tazas que aceptamos, y horarios.</p>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="input-chat" placeholder="Escribe..." onkeypress="checkEnter(event)">
+            <button onclick="enviarMensaje()">🚀</button>
+        </div>
+    </div>
 
     <script src="js/funcionalidades.js"></script>
 </body>
