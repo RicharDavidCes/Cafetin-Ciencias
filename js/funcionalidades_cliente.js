@@ -2,7 +2,8 @@ const productos = [
     { id: 1, nombre: "Empanada Operada", precio: 2.50, icono: "🥟" },
     { id: 2, nombre: "Café con Leche", precio: 1.50, icono: "☕" },
     { id: 3, nombre: "Jugo Natural", precio: 2.00, icono: "🥤" },
-    { id: 4, nombre: "Sandwich Ciencias", precio: 4.50, icono: "🥪" }
+    { id: 4, nombre: "Sandwich Ciencias", precio: 4.50, icono: "🥪" },
+    { id: 5, nombre: "Tizana", precio: 1.50, icono: "🍹" }
 ];
 
 let carrito = [];
