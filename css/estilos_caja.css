@@ -13,7 +13,6 @@ body{
     margin: 0; 
 }
 
-/* --- Navegación --- */
 .barra_navegacion {
     background: var(--dark);
     padding: 15px 0;
@@ -63,7 +62,6 @@ body{
     font-weight: 800;
 }
 
-/* --- Botón Salida --- */
 .btn_logout {
     background: transparent;
     color: #fff;
@@ -104,7 +102,6 @@ body{
     transform: rotate(45deg);
 }
 
-/* --- Estructura Principal POS --- */
 .contenedor_pos{ 
     display: flex; 
     height: calc(100vh - 60px); 
@@ -112,7 +109,6 @@ body{
     gap: 20px; 
 }
 
-/* --- Área de Selección --- */
 .area_seleccion{ 
     flex: 2; 
     background: white; 
@@ -169,7 +165,6 @@ body{
     background: #eee; 
 }
 
-/* --- REFACTORIZACIÓN: Área de Facturación (Aside) --- */
 .area_facturacion{ 
     flex: 1; 
     background: #fff; 
@@ -223,7 +218,6 @@ body{
     font-size: 0.9rem;
 }
 
-/* Clases de alineación para la tabla */
 .txt_centro { text-align: center; }
 .txt_derecha { text-align: right; }
 
@@ -243,7 +237,6 @@ body{
     background: #cc0000;
 }
 
-/* --- Módulo de Pago --- */
 .modulo_pago {
     background: #f9f9f9;
     padding: 20px;
@@ -292,7 +285,6 @@ body{
     color: var(--primary);
 }
 
-/* --- Responsive --- */
 @media (max-width: 1100px){
     .contenedor_pos{
         flex-direction: column;
